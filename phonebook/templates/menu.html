@@ -1,0 +1,8 @@
+{% load staticfiles %}
+{% block menu %}
+<ul>
+  {% for organization in organizations %}
+    <li><a href="{{ organization.slug }}">{{ organization }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block phonebook %}
+
+<input placeholder="Поиск" id="phonebookSearch" type="text" class="validate">
+<table id="phonebookTable">
+  <thead>
+    <tr>
+      {% for key in phonebook.phonebook_header %}
+        <th>{{ key }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee in phonebook.phonebook_content %}
+    <tr>
+      {% for key, data in employee.items %}
+      <td>
+          {% if data is iterable %}
+            {% for record in data %}
+              {{ record }}
+              {% if forloop.counter != data|length %}
+              <br>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {{ data }}
+          {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{phonebook.phonebook_content}}
+{% endblock %}
