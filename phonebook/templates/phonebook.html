@@ -11,25 +11,24 @@
     </tr>
   </thead>
   <tbody>
-    {% for employee in phonebook.phonebook_content %}
+    {% for row in phonebook.phonebook_content %}
     <tr>
-      {% for key, data in employee.items %}
-      <td>
-          {% if data is iterable %}
-            {% for record in data %}
-              {{ record }}
-              {% if forloop.counter != data|length %}
+      {% for key, data in row.items %}
+        <td>
+          {% if key == 'Сотрудник' or key == 'Отдел' %}
+            {{ data }}
+          {% else %}
+            {% for contact in data %}
+              {{ contact }}
+              {% if forloop.counter != contact|length %}
               <br>
               {% endif %}
             {% endfor %}
-          {% else %}
-            {{ data }}
           {% endif %}
-      </td>
+        </td>
       {% endfor %}
     </tr>
     {% endfor %}
   </tbody>
 </table>
-{{phonebook.phonebook_content}}
 {% endblock %}
