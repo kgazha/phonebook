@@ -43,7 +43,7 @@ class Department(models.Model):
 class OrgDepAssociation(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Организация")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, verbose_name="Отдел")
-    department_order = models.IntegerField(default=0, verbose_name="Порядковый номер")
+    phonebook_order = models.IntegerField(default=0, verbose_name="Порядковый номер")
     date_added = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
 
@@ -75,6 +75,7 @@ class Employee(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name="Должность")
     org_dep_association = models.ForeignKey(OrgDepAssociation, on_delete=models.CASCADE, verbose_name="Отдел")
     slug = models.SlugField(blank=True, unique=True, allow_unicode=True)
+    phonebook_order = models.IntegerField(default=0, verbose_name="Порядковый номер")
     date_added = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
 

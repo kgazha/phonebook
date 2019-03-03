@@ -24,10 +24,10 @@ class Phonebook:
         return [self.department_key, self.employee_key] + contact_types
 
     def get_phonebook(self, organization):
-        org_deps = OrgDepAssociation.objects.filter(organization=organization)
+        org_deps = OrgDepAssociation.objects.filter(organization=organization).order_by('phonebook_order')
         for org_dep in org_deps:
             department = Department.objects.get(id=org_dep.department.id)
-            employees = Employee.objects.filter(org_dep_association=org_dep)
+            employees = Employee.objects.filter(org_dep_association=org_dep).order_by('phonebook_order')
             for employee in employees:
                 contacts = get_contacts(employee)
                 data = {self.department_key: department.name,
