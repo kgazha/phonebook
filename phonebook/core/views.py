@@ -32,10 +32,10 @@ class Phonebook:
                 contacts = get_contacts(employee)
                 data = {self.department_key: department.name,
                         self.employee_key: employee}
-                for key in list(set(self.header) - set(data.keys())):
+                for key in self.header:
                     if key in contacts.keys():
                         data.update({key: contacts[key]})
-                    else:
+                    elif key not in data.keys():
                         data.update({key: None})
                 self.content.append(data)
         return {'phonebook_header': self.header, 'phonebook_content': self.content}
