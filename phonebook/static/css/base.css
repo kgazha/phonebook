@@ -88,3 +88,10 @@ h1, h2, h3 {
 .menu-components li a {
   font-size: 14px;
 }
+
+.department {
+  text-align: center;
+  padding: 5px;
+  color: #333;
+  font-weight: normal;
+}

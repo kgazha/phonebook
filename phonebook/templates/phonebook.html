@@ -5,29 +5,40 @@
 <table id="phonebookTable">
   <thead>
     <tr>
-      {% for key in phonebook.phonebook_header %}
+      {% for key in phonebook_header %}
         <th>{{ key }}</th>
       {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for row in phonebook.phonebook_content %}
-    <tr>
+    {% for row in phonebook_content %}
       {% for key, data in row.items %}
-        <td>
-          {% if key == 'Сотрудник' or key == 'Отдел' %}
-            {{ data }}
-          {% else %}
-            {% for contact in data %}
-              {{ contact }}
-              {% if forloop.counter != contact|length %}
-              <br>
+        {% if key == department_key %}
+        <tr>
+          <th class="department" id="department{{ forloop.counter }}" 
+              colspan="{{ phonebook_header|length }}">{{ data }}</th>
+        </tr>
+        {% else %}
+          {% for employee in data %}
+            <tr>
+            {% for emp_key, emp_data in employee.items %}
+              {% if emp_key == employee_key or emp_key == position_key %}
+                <td>{{ emp_data }}</td>
+              {% else %}
+                <td>
+                {% for contact in emp_data %}
+                  {{ contact }}
+                  {% if forloop.counter != contact|length %}
+                  <br>
+                  {% endif %}
+                {% endfor %}
+                </td>
               {% endif %}
             {% endfor %}
-          {% endif %}
-        </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
-    </tr>
     {% endfor %}
   </tbody>
 </table>
