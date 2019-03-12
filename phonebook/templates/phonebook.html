@@ -2,7 +2,7 @@
 {% block phonebook %}
 
 <input placeholder="Поиск" id="phonebookSearch" type="text" class="validate">
-<table id="phonebookTable">
+<table id="phonebookTable" class="responsive-table">
   <thead>
     <tr>
       {% for key in phonebook_header %}
@@ -12,15 +12,15 @@
   </thead>
   <tbody>
     {% for row in phonebook_content %}
+      {% with department_id=forloop.counter %}
       {% for key, data in row.items %}
         {% if key == department_key %}
-        <tr>
-          <th class="department" id="department{{ forloop.counter }}" 
-              colspan="{{ phonebook_header|length }}">{{ data }}</th>
+        <tr class="department" id="department{{ department_id }}">
+          <td colspan="{{ phonebook_header|length }}">{{ data }}</td>
         </tr>
         {% else %}
           {% for employee in data %}
-            <tr>
+            <tr data-department="department{{ department_id }}">
             {% for emp_key, emp_data in employee.items %}
               {% if emp_key == employee_key or emp_key == position_key %}
                 <td>{{ emp_data }}</td>
@@ -39,6 +39,7 @@
           {% endfor %}
         {% endif %}
       {% endfor %}
+      {% endwith %}
     {% endfor %}
   </tbody>
 </table>

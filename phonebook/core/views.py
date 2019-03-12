@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.views import View
 from .models import Organization, Department, OrgDepAssociation, Position, Employee, Contact, ContactType
 from collections import defaultdict
@@ -24,7 +24,7 @@ class Phonebook:
     def __update_header(self):
         contact_types = [value.__str__()
                          for value in ContactType.objects.filter(phonebook_display=True).order_by('phonebook_order')]
-        return [self.position_key, self.employee_key] + contact_types
+        return [self.employee_key, self.position_key] + contact_types
 
     def get_phonebook(self, organization):
         org_deps = OrgDepAssociation.objects.filter(organization=organization).order_by('phonebook_order')
@@ -36,8 +36,8 @@ class Phonebook:
             for employee in employees:
                 contacts = get_contacts(employee)
                 employee_dict = defaultdict(dict)
-                employee_dict.update({self.position_key: employee.position})
                 employee_dict.update({self.employee_key: employee})
+                employee_dict.update({self.position_key: employee.position})
                 for key in self.header:
                     if key in contacts.keys():
                         employee_dict.update({key: contacts[key]})

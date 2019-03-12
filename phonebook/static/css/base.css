@@ -31,7 +31,7 @@ ul
 }
 
 li {
-  margin: 20px 0;
+  margin: 10px 0;
   display: block;
 }
 
@@ -43,10 +43,6 @@ li {
 .menu li a {
   display: inline-flex;
   font-size: 18px;
-}
-
-.card {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 a {
@@ -89,9 +85,17 @@ h1, h2, h3 {
   font-size: 14px;
 }
 
-.department {
-  text-align: center;
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody td {
   padding: 5px;
+}
+
+.department {
+  text-align: left;
   color: #333;
   font-weight: normal;
+  border-bottom: 0;
 }
