@@ -1,3 +1,14 @@
+{% load staticfiles %}
 {% block menu %}
-  <h3>Телефонный справочник</h3>
+  <div class="header">
+    <div class="toggle-wrap">
+        <button class="toggle toggle--open">
+            <span class="ti-menu"></span>
+        </button>
+    </div>
+    <a class="logo" href="#">
+        <img class="logo__img" src="{% static 'img/logo.png' %}" alt="">
+        <span class="logo__text">телефонный справочник органов государственной власти</span>
+    </a>
+  </div>
 {% endblock %}

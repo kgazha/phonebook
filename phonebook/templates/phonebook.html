@@ -1,8 +1,8 @@
 {% extends "index.html" %}
 {% block phonebook %}
 
-<input placeholder="Поиск" id="phonebookSearch" type="text" class="validate">
-<table id="phonebookTable" class="responsive-table">
+<input class="search" placeholder="Поиск" id="phonebookSearch" type="text" class="validate">
+<table id="phonebookTable">
   <thead>
     <tr>
       {% for key in phonebook_header %}

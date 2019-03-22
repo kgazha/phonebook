@@ -5,6 +5,8 @@ from django.utils.text import slugify
 class Organization(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="Наименование")
     organization_fk = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, verbose_name="Вышестоящая организация")
+    phonebook_display = models.BooleanField(default=True, verbose_name="Отображать в справочнике")
+    phonebook_order = models.IntegerField(default=0, verbose_name="Порядковый номер")
     slug = models.SlugField(blank=True, unique=True, allow_unicode=True)
     date_added = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)

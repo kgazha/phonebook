@@ -11,6 +11,11 @@ class ContactInline(admin.TabularInline):
 
 
 class EmployeeAdmin(admin.ModelAdmin):
+    # def organization_name(self, obj):
+        # return obj.org_dep_association.organization
+
+    # autocomplete_fields  = ['org_dep_association']
+    # list_display = ('surname', 'name', 'patronymic', 'position', 'organization_name')
     inlines = [
         ContactInline,
     ]

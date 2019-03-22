@@ -1,0 +1,19 @@
+{% load staticfiles %}
+{% block sidebar %}
+  <div class="sidebar">
+    <div class="sidebar__header">
+      <button class="toggle toggle--close">
+          <span class="ti-arrow-left"></span>
+      </button>
+    </div>
+    <nav class="nav">
+      {% for organization in organizations %}
+        {% if organization.slug in request.path  %}
+          <a class="nav__link nav__link--active" href="{{ organization.slug }}">{{ organization }}</a>
+        {% else %}
+        <a class="nav__link" href="{{ organization.slug }}">{{ organization }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+{% endblock %}
